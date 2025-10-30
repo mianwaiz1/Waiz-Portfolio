@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Waiz Khalil — Personal Chatbot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1724;
+      --muted: #9aa4b2;
+      --accent: #6ee7b7;
+      --user: #60a5fa;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #071427 0%, #081428 100%);
+      color: #e6eef6;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(10, 18, 32, 0.6);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #60a5fa);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #072033;
+      font-size: 18px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    a:hover { opacity: 0.8; }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    #chatlog {
+      width: 100%;
+      max-width: 800px;
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .msg {
+      display: inline-block;
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      line-height: 1.5;
+      word-wrap: break-word;
+      font-size: 14px;
+      animation: fadeIn 0.2s ease-in;
+    }
+
+    .user {
+      align-self: flex-end;
+      background: rgba(96,165,250,0.15);
+      border: 1px solid rgba(96,165,250,0.3);
+      color: var(--user);
+    }
+
+    .bot {
+      align-self: flex-start;
+      background: rgba(110,231,183,0.1);
+      border: 1px solid rgba(110,231,183,0.2);
+      color: var(--accent);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .input-area {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      max-width: 800px;
+      padding: 16px;
+      background: rgba(10, 18, 32, 0.6);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    #userInput {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      outline: none;
+      font-size: 14px;
+    }
+
+    #sendBtn {
+      background: var(--accent);
+      border: none;
+      color: #072033;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    #sendBtn:hover {
+      background: #34d399;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 12px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      background: rgba(10, 18, 32, 0.6);
+      backdrop-filter: blur(8px);
+    }
+
+    @media (max-width: 600px) {
+      #chatlog { max-width: 100%; }
+      .msg { max-width: 95%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="avatar">WK</div>
+      <div>
+        <h1 style="margin:0;font-size:18px;">Waiz Khalil</h1>
+        <div style="font-size:13px;color:var(--muted);">Personal AI Chatbot</div>
+      </div>
+    </div>
+    <nav><a href="/">← Back to Portfolio</a></nav>
+  </header>
+
+  <main>
+    <div id="chatlog"></div>
+    <div class="input-area">
+      <input id="userInput" placeholder="Ask something about Waiz..." autocomplete="off" />
+      <button id="sendBtn">Send</button>
+    </div>
+  </main>
+
+  <footer>Made with ❤️ by Waiz</footer>
+
+  <script>
+    const input = document.getElementById('userInput');
+    const btn = document.getElementById('sendBtn');
+    const log = document.getElementById('chatlog');
+
+    async function sendMessage() {
+      const q = input.value.trim();
+      if (!q) return;
+
+      appendMessage(q, 'user');
+      input.value = '';
+
+      try {
+        const res = await fetch('/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: q })
+        });
+
+        if (!res.ok) throw new Error("Server error: " + res.status);
+        const data = await res.json();
+
+        if (data.answer) {
+          appendMessage(data.answer, 'bot');
+        } else {
+          appendMessage(data.error || "No response received.", 'bot');
+        }
+      } catch (err) {
+        appendMessage("Error: " + err.message, 'bot');
+      }
+    }
+
+    function appendMessage(text, type) {
+      const div = document.createElement('div');
+      div.className = `msg ${type}`;
+      div.innerHTML = `<b>${type === 'user' ? 'You' : 'WaizBot'}:</b> ${text}`;
+      log.appendChild(div);
+      log.scrollTo({ top: log.scrollHeight, behavior: 'smooth' });
+    }
+
+    btn.addEventListener('click', sendMessage);
+    input.addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>

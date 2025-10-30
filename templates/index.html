@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waiz Khalil — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .nav-btn {
+    margin-left: 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    }
+
+    .nav-btn:hover {
+    border-color: var(--accent);
+    background: rgba(110, 231, 183, 0.05);
+    }
+
+    a { align-self:flex-end; margin-top:12px; background:transparent; border:1px solid rgba(255,255,255,0.06); padding:8px 12px; border-radius:8px; font-size:13px; color:var(--accent); cursor:pointer; text-decoration:none; }
+
+    :root {
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#6ee7b7; --glass:rgba(255,255,255,0.04);
+      --radius:14px; --maxw:1100px;
+    }
+
+    * { box-sizing:border-box; }
+
+    html, body {
+      height:100%; margin:0; font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      background:linear-gradient(180deg,#071427 0%, #081428 100%);
+      color:#e6eef6;
+    }
+
+    .container { max-width:var(--maxw); margin:36px auto; padding:28px; }
+
+    header { display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    .brand { display:flex; gap:16px; align-items:center; }
+    .avatar { width:72px; height:72px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#60a5fa); display:grid; place-items:center; font-weight:700; color:#072033; }
+    h1 { margin:0; font-size:22px; }
+    .meta { color:var(--muted); font-size:13px; }
+
+    .hero { display:grid; grid-template-columns:1fr 320px; gap:24px; margin-top:18px; }
+    .card {
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 6px 24px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .about h2 { margin:0 0 8px 0; }
+    .about p { color:var(--muted); line-height:1.6; }
+
+    .skills { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .skill { background:var(--glass); padding:8px 10px; border-radius:999px; font-size:13px; color:var(--muted); }
+
+    .contact-list { display:flex; flex-direction:column; gap:8px; }
+    .contact-item { background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:12px; border-radius:10px; color:var(--muted); font-size:14px; }
+
+    .section { margin-top:26px; }
+    .section h3 { margin:0 0 12px 0; }
+
+    /* ✅ Fixed: ID case consistency (was #bot-grid vs #Bot-grid) */
+    #bot-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+
+    .proj-card {
+      min-height:140px;
+      padding:16px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      display:flex; flex-direction:column; justify-content:space-between;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .proj-card h4 { margin:0; font-size:16px; }
+    .proj-card p { margin:8px 0 0 0; color:var(--muted); font-size:13px; }
+
+    .proj-cta {
+      align-self:flex-end; margin-top:12px; background:transparent;
+      border:1px solid rgba(255,255,255,0.06); padding:8px 12px;
+      border-radius:8px; font-size:13px; color:var(--accent); cursor:pointer;
+      text-decoration:none;
+    }
+
+    .exp-list { display:flex; flex-direction:column; gap:10px; }
+    .exp-item {
+      padding:12px; border-radius:10px;
+      background:rgba(255,255,255,0.01);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .muted { color:var(--muted); }
+
+    footer { margin-top:28px; text-align:center; color:var(--muted); font-size:13px; }
+
+    /* Responsive */
+    @media (max-width:980px) {
+      .hero { grid-template-columns:1fr; }
+      #bot-grid { grid-template-columns:repeat(2,1fr); }
+    }
+
+    @media (max-width:560px) {
+      .avatar { width:56px; height:56px; }
+      #bot-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar" aria-label="Waiz Khalil Initials">WK</div>
+        <div>
+          <h1>Waiz Khalil</h1>
+          <div class="meta">Python Developer • AI Engineer • Data Scientist</div>
+        </div>
+      </div>
+      <nav class="meta">
+        <a href="/chatbot" class="proj-cta">Open Waiz Chatbot</a>
+      </nav>
+      <nav class="meta">
+        📍 Lahore, Pakistan &nbsp; • &nbsp; <span class="muted">waizpydev@gmail.com</span>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card about">
+        <h2>About</h2>
+        <p>Self-driven and detail-oriented Python Developer with hands-on expertise in Data Science, NLP, AI/ML, and Full-Stack Development. Skilled in building LLM-powered applications using LangChain, LangGraph, and Retrieval-Augmented Generation (RAG), along with experience in fine-tuning models for domain-specific solutions. Adept at developing chatbots, APIs, automation tools, and intelligent applications using Python, Flask, and Django. Strong background in data pipelines, real-time systems, and AI deployment across academic and commercial environments. Successfully contributed to AI-driven projects at AppsGenii Technologies and Consus Solutions, delivering practical and scalable solutions.</p>
+        
+        <div class="skills">
+          <div class="skill">Python, HTML, CSS, JavaScript</div>
+          <div class="skill">LangChain, LangGraph, RAG, Prompt Engineering, Fine-tuning, ChatGPT & OpenAI APIs</div>
+          <div class="skill">Flask, Django, Tkinter, FastAPI</div>
+          <div class="skill">OpenAI, Hugging Face, Gemini, and other modern AI ecosystems</div>
+          <div class="skill">Scikit-learn, Pandas, NumPy, Matplotlib, Pickle (AI deployment)</div>
+          <div class="skill">Selenium, BeautifulSoup, Scrapy</div>
+          <div class="skill">PyAutoGUI, Tkinter, OpenCV</div>
+          <div class="skill">MySQL, SQLite3, PostgreSQL, MongoDB</div>
+          <div class="skill">gTTS, SpeechRecognition, pyttsx3, custom AI chatbots, Sockets (Django and Flask)</div>
+        </div>
+      </div>
+
+      <aside class="card" aria-label="Contact Information">
+        <div class="contact-list">
+          <div class="contact-item"><strong>Email</strong><div class="muted">waizpydev@gmail.com</div></div>
+          <div class="contact-item"><strong>Phone</strong><div class="muted">+92 325 7962046</div></div>
+          <div class="contact-item"><strong>GitHub</strong><div class="muted"><a href="https://github.com/mianwaiz1" target="_blank" rel="noopener noreferrer" class="muted">github.com/mianwaiz1</a></div></div>
+          <div class="contact-item"><strong>LinkedIn</strong><div class="muted"><a href="https://linkedin.com/in/waiz-khalil-4a870a328" target="_blank" rel="noopener noreferrer" class="muted">linkedin.com/in/waiz-khalil-4a870a328</a></div></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section card">
+      <h3>Personal Chatbot</h3>
+      <!-- ✅ Fixed ID to match CSS -->
+      <div id="bot-grid">
+        <article class="proj-card">
+          <h4>Waiz AI Chatbot</h4>
+          <p class="muted">Ask anything about Waiz — a personalized chatbot powered by LLMs.</p>
+          <a href="/chatbot" class="proj-cta">Open Waiz Chatbot</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <h3>Experience</h3>
+        <div class="exp-list">
+          <div class="exp-item">
+            <strong>Python Developer / AI Developer — Consus Solutions</strong>
+            <div class="muted">Project-Based • 2024 – Present</div>
+            <div class="muted">Built AI-powered tools, web apps, and automation pipelines using modern frameworks.</div>
+          </div>
+          <div class="exp-item">
+            <strong>Python & Data Science Intern — AppsGenii Technologies</strong>
+            <div class="muted">Lahore • 2024</div>
+            <div class="muted">Worked on data preprocessing, ML model training, and deployment for production systems.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="muted">Built with ❤️ by Waiz Khalil</footer>
+  </div>
+</body>
+</html>
