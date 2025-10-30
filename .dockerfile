@@ -1,38 +1,35 @@
 # ---------- Base Image ----------
 FROM python:3.11-slim
 
-# ---------- Environment Setup ----------
-# Prevent Python from writing pyc files and using output buffering
+# ---------- Environment Variables ----------
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Create and set the working directory
+# Set the working directory
 WORKDIR /app
 
 # ---------- System Dependencies ----------
-# Install system packages required by PyMuPDF, FAISS, and LangChain
 RUN apt-get update && apt-get install -y \
     build-essential \
     libgl1-mesa-glx \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# ---------- Copy Project Files ----------
+# ---------- Install Dependencies ----------
 COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Copy the entire application
+# ---------- Copy Project Files ----------
 COPY . .
 
-# ---------- Security & Flask Settings ----------
-# Flask will run on port 5000
+# ---------- Expose Flask Port ----------
 EXPOSE 5000
 
-# Disable Flask’s debug mode in production by default
-ENV FLASK_DEBUG=false
+# ---------- Environment ----------
 ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_ENV=production
 
-# ---------- Run the App ----------
-# Using gunicorn for production (better than flask dev server)
+# ---------- Run App ----------
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
