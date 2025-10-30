@@ -9,13 +9,14 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # ---------- System Dependencies ----------
+# Install essential build tools and GLib (needed for PyMuPDF)
 RUN apt-get update && apt-get install -y \
     build-essential \
-    libgl1-mesa-glx \
     libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+    libgl1 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# ---------- Install Dependencies ----------
+# ---------- Install Python Dependencies ----------
 COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
