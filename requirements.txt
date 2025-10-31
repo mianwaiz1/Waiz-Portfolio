@@ -1,21 +1,21 @@
-# ---------- Core ----------
-flask
-flask-session
-werkzeug
-python-dotenv
-numpy
+# Core
+streamlit==1.38.0
+python-dotenv==1.0.1
+numpy==1.26.4
 
-# ---------- LangChain + AI ----------
-langchain
-langchain-community
-langchain-google-genai
-sentence-transformers
-faiss-cpu
+# LangChain and community integrations
+langchain==0.2.14
+langchain-community==0.2.12
+langchain-google-genai==1.0.6
 
-# ---------- PDF Processing ----------
-PyMuPDF
+# Embeddings and vector stores
+faiss-cpu==1.8.0.post1
+sentence-transformers==3.0.1
+huggingface-hub==0.24.6
 
-# ---------- Utilities ----------
-requests
-tqdm
-gunicorn
+# PDF processing
+PyMuPDF==1.24.10
+
+# Optional (helps with caching, async, etc.)
+tqdm==4.66.5
+requests==2.32.3
