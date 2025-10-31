@@ -1,6 +1,6 @@
 # Core
-streamlit==1.38.0
-python-dotenv==1.0.1
+streamlit
+python-dotenv
 numpy==1.26.4
 
 # LangChain and community integrations
@@ -9,7 +9,7 @@ langchain-community==0.2.12
 langchain-google-genai==1.0.6
 
 # Embeddings and vector stores
-faiss-cpu==1.7.4
+faiss-cpu
 sentence-transformers==3.0.1
 huggingface-hub==0.24.6
 
@@ -19,4 +19,5 @@ PyMuPDF==1.24.10
 # Optional (helps with caching, async, etc.)
 tqdm==4.66.5
 requests==2.32.3
+
 
