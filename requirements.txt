@@ -1,17 +1,17 @@
 # Core
 streamlit
 python-dotenv
-numpy==1.26.4
+numpy
 
 # LangChain and community integrations
-langchain==0.2.14
-langchain-community==0.2.12
-langchain-google-genai==1.0.6
+langchain>=0.1.0
+langchain-community>=0.0.8
+langchain-google-genai>=0.0.9
 
 # Embeddings and vector stores
 faiss-cpu
-sentence-transformers==3.0.1
-huggingface-hub==0.24.6
+sentence-transformers
+huggingface-hub
 
 # PDF processing
 PyMuPDF==1.24.10
@@ -19,5 +19,6 @@ PyMuPDF==1.24.10
 # Optional (helps with caching, async, etc.)
 tqdm==4.66.5
 requests==2.32.3
+
 
 
