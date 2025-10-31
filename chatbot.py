@@ -232,7 +232,7 @@ st.markdown(
             <div style="font-size:13px;color:var(--muted);">Personal AI Chatbot</div>
           </div>
         </div>
-        <nav><a href="/">← Back to Portfolio</a></nav>
+        <nav><a href="https://waizkhalil.pythonanywhere.com/">← Back to Portfolio</a></nav>
       </header>
     </div>
     """,
@@ -294,3 +294,4 @@ if st.session_state.chat_history:
 
 # Footer
 st.markdown('<footer class="custom">Made with ❤️ by Waiz</footer></div>', unsafe_allow_html=True)
+
