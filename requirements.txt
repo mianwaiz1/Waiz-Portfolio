@@ -14,11 +14,12 @@ sentence-transformers
 huggingface-hub
 
 # PDF processing
-PyMuPDF==1.24.10
+PyMuPDF
 
 # Optional (helps with caching, async, etc.)
-tqdm==4.66.5
-requests==2.32.3
+tqdm
+requests
+
 
 
 
