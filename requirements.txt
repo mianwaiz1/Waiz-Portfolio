@@ -4,7 +4,7 @@ python-dotenv
 numpy
 
 # LangChain and community integrations
-langchain>=0.1.0
+langchain
 langchain-community>=0.0.8
 langchain-google-genai>=0.0.9
 
@@ -19,6 +19,7 @@ PyMuPDF
 # Optional (helps with caching, async, etc.)
 tqdm
 requests
+
 
 
 
